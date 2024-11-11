@@ -124,6 +124,42 @@ The combined result is returned, without duplicates.
 |Rows: 3
 |===
 
+[[union-combining-distinct-and-all]]
+== Combining UNION DISTINCT and UNION ALL
+
+It is not allowed to mix `UNION DISTINCT` and `UNION ALL` in the same chain of clauses.
+This can be solved by enclosing one or more `UNION` of the same type in curly braces
+allowing the enclosed query to be used as an argument to the outer `UNION`.
+
+.Query
+[source, cypher]
+----
+{
+   MATCH (n:Actor)
+   RETURN n.name AS name
+   UNION
+   MATCH (n:Director)
+   RETURN n.name AS name
+}
+UNION ALL
+MATCH (n:Movie)
+RETURN n.title AS name
+----
+
+The combined result is returned.
+
+.Result
+[role="queryresult",options="header,footer",cols="1*<m"]
+|===
+| name
+| "Johnny Depp"
+| "Sarah Jessica Parker"
+| "Ed Wood"
+| "Ed Wood"
+|Rows: 4
+|===
+
+
 
 [[post-union-processing]]
 == Post-union processing
