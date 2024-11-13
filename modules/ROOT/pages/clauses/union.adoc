@@ -124,14 +124,14 @@ The combined result is returned, without duplicates.
 |Rows: 3
 |===
 
-[[union-combining-distinct-and-all]]
-== Combining UNION DISTINCT and UNION ALL
+[role=label--new-2025.01]
+[[combining-union-and-union-all]]
+== Combining UNION and UNION ALL
 
-It is not allowed to mix `UNION DISTINCT` and `UNION ALL` in the same chain of clauses.
-This can be solved by enclosing one or more `UNION` of the same type in curly braces
-allowing the enclosed query to be used as an argument to the outer `UNION`.
+To combine `UNION` (or `UNION DISTINCT`) and `UNION ALL` in the same query, enclose one or more `UNION` operations of the same type in curly braces.
+This allows the enclosed query to act as an argument that can be combined with an outer `UNION` operation of any type.
 
-.Query
+.Combine `UNION` and `UNION ALL` using curly braces
 [source, cypher]
 ----
 {
@@ -158,7 +158,6 @@ The combined result is returned.
 | "Ed Wood"
 |Rows: 4
 |===
-
 
 
 [[post-union-processing]]

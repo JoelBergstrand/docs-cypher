@@ -134,6 +134,37 @@ Several  xref:clauses/transaction-clauses.adoc#query-listing-transactions[`SHOW 
 * The current query-related columns — `currentQuery`, `currentQueryId`, `parameters`, `planner`, `runtime`, `indexes`, `currentQueryStartTime`, `currentQueryElapsedTime`, `currentQueryCpuTime`, `currentQueryIdleTime`, and `currentQueryStatus` — now return `null` when no query is executing.
 |===
 
+
+=== New features
+
+[cols="2", options="header"]
+|===
+| Feature
+| Details
+
+a|
+label:functionality[]
+label:updated[]
+[source, cypher, role="noheader"]
+----
+{
+   MATCH (n:Actor)
+   RETURN n.name AS name
+   UNION
+   MATCH (n:Director)
+   RETURN n.name AS name
+}
+UNION ALL
+MATCH (n:Movie)
+RETURN n.title AS name
+----
+
+a| `UNION` (or `UNION DISTINCT`) and `UNION ALL` can now be combined in the same query through the use of curly braces.
+This was introduced as part of Cypher's xref:appendix/gql-conformance/index.adoc[].
+For more information, see xref:clauses/union.adoc#combining-union-and-union-all[Combining `UNION` and `UNION ALL`].
+|===
+
+
 [[cypher-deprecations-additions-removals-5.26]]
 == Neo4j 5.26
 
