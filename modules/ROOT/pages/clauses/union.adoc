@@ -124,7 +124,7 @@ The combined result is returned, without duplicates.
 |Rows: 3
 |===
 
-[role=label--new-2025.01]
+[role=label--new-2025.02]
 [[combining-union-and-union-all]]
 == Combining UNION and UNION ALL
 
